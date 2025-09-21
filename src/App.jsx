@@ -44,6 +44,18 @@ export default class App extends Component {
     this.setState({ page: newPage, api: newApi }, this.getNews);
   }
 
+  formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString('en', { month: 'short' });
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    return `${day} ${month} ${year}, ${hours}:${minutes}:${seconds}`;
+  }
+
   render() {
     return (
       <div>
@@ -54,7 +66,9 @@ export default class App extends Component {
             {this.state.news.map(item => (
               <li key={item.objectID}>
                 <h2>{item.title}</h2>
-                <p>Author: {item.author}</p>
+                {item.author && <p>Author: {item.author}</p>}
+                <p>{this.formatDate(item.created_at)}</p>
+                <p>Comments: {item.num_comments}</p>
                 {item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer">Read more</a> : ""}
               </li>
             ))}
