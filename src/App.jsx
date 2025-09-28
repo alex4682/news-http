@@ -34,13 +34,13 @@ export default class App extends Component {
   prevPage = () => {
     if (this.state.page > 0) {
       const newPage = this.state.page - 1;
-      const newApi = `http://hn.algolia.com/api/v1/search_by_date?tags=story&page=${newPage}&hitsPerPage=21`;
+      const newApi = `https://hn.algolia.com/api/v1/search_by_date?tags=story&page=${newPage}&hitsPerPage=21`;
       this.setState({ page: newPage, api: newApi }, this.getNews);
     }
   }
   nextPage = () => {
     const newPage = this.state.page + 1;
-    const newApi = `http://hn.algolia.com/api/v1/search_by_date?tags=story&page=${newPage}&hitsPerPage=21`;
+    const newApi = `https://hn.algolia.com/api/v1/search_by_date?tags=story&page=${newPage}&hitsPerPage=21`;
     this.setState({ page: newPage, api: newApi }, this.getNews);
   }
 
